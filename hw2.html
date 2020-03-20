@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页换肤</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        li,ul{
+            list-style: none;
+        }
+        fieldset{
+            width:800px;
+            margin:0 auto;
+        }
+        h1{
+            color: red;
+        }
+        ul{
+            position: relative;
+            height:40px;
+            width:750px;
+            margin: 20px;
+            border: solid grey 1px;
+        }
+        li{
+            float:left;
+            height:20px;
+            width:20px;
+            margin:10px;
+            position: relative;
+        }
+        .color0{
+            background-color: lightgray;
+        }
+        .color1{
+            background-color: purple;
+        }
+        .color2{
+            background-color: lightpink;
+        }
+        .color3{
+            background-color: lightskyblue;
+        }
+        .color4{
+            background-color: yellow;
+        }
+        .color5{
+            background-color: lightgreen;
+        }
+        #selected{
+            top:-5px;
+        }
+        #words{
+            float: left;
+            width:700px;
+            margin: 0 50px 20px 50px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend><h1>网页换肤</h1></legend>
+        <ul>
+            <li class="color0" title="灰色"></li>
+            <li class="color1" title="紫色"></li>
+            <li class="color2" title="粉色"></li>
+            <li class="color3" title="蓝色"></li>
+            <li class="color4" title="黄色"></li>
+            <li class="color5" title="绿色"></li>
+        </ul>
+        <p id="words">LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用</p>
+    </fieldset>
+</body>
+<script>
+    var li = document.getElementsByTagName("li");
+    var words = document.getElementById("words");
+    var color,num;
+    window.onload = function(){
+        if(!window.localStorage){
+		    alert("你的浏览器不支持localStorage");
+	    }
+	    else{
+            if(localStorage.getItem("color")){
+                clear();
+                num = localStorage.getItem("color");
+                li[num].id = "selected"
+                words.className = li[num].className;
+            }
+            else{
+                li[0].id = "selected";
+                words.className = li[0].className;
+            }  
+	    }
+    }
+    for(var i=0;i<li.length;i++){
+        words.className = this.className;
+        li[i].onclick = function(){
+            clear();
+            this.id = "selected";
+            words.className = this.className;
+            color = this;
+            localStorage.setItem("color",this.className.charAt(5));
+        }
+    }
+    function clear(){
+        for(var i=0;i<li.length;i++){
+            li[i].id = "";
+        }
+    }
+    
+</script>
+</html>
