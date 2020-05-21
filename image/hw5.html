@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">=
+    <title>photo</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li,ul{
+            list-style: none;
+        }
+        body{
+            background: url(bg3.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        ul{
+            margin-top: 100px;
+        }
+        div{
+            background: #fff;
+            float: left;
+            margin: 0 0 27px 30px;
+            font-size: 18px;
+            color: #000;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+            transition:all .2s linear;
+        }
+        img{
+            display: block;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        li:first-child div{
+            transform: rotate(-2deg);
+        }
+        li:nth-child(3) div{
+            transform: rotate(-10deg);
+        }
+        li:nth-child(5) div {
+            transform: rotate(-3deg);
+        }
+        li:nth-child(6) div {
+            transform: rotate(-8deg);
+        }
+        li div:hover {
+            cursor:pointer;
+            transform: scale(1.25);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><div title="相识"><img src="11.jpg" alt="相识"/><scan>相识</scan></div></li>
+        <li><div title="凝视"><img src="22.jpg" alt="凝视"/><scan>凝视</scan></div></li>
+        <li><div title="甜睡"><img src="33.jpg" alt="甜睡"/><scan>甜睡</scan></div></li>
+        <li><div title="逗乐"><img src="44.jpg" alt="逗乐"/><scan>逗乐</scan></div></li>
+        <li><div title="奔跑"><img src="55.jpg" alt="奔跑"/><scan>奔跑</scan></div></li>
+        <li><div title="漠视"><img src="66.jpg" alt="漠视"/><scan>漠视</scan></div></li>
+    </ul>
+</body>
+</html>
