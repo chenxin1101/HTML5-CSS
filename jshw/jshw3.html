@@ -1,0 +1,143 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>京东轮播图</title>
+<script src="jquery.min.js"></script>
+<style>
+    *{
+    	padding:0;
+    	margin:0;
+	}
+	li,ul{
+	    list-style:none;
+	}
+	img{
+	    vertical-align:middle;
+	    border:none;
+	}
+	.wrap{
+	    width:600px;
+	    height:450px;
+	    margin:0px auto;
+	    position:relative;
+	}
+	.img li{
+	    position:absolute;
+	    display:none;
+	}
+	img{
+		width:600px;
+	    height:450px;
+	} 
+	.cir{
+		height:15px;
+	    position:absolute;
+	    left:10px;
+	    bottom:30px;
+	}
+	.cir li{
+	    width:10px;
+	    height:10px;
+	    display:inline-block;
+	    background:lightgray;
+	    border-radius:50%;
+	    margin:3px;
+	    cursor:pointer;
+	}
+	.cir .active{
+		margin-bottom: -0.5px;
+		line-height: 50px;
+	    background:#fff;
+		border:solid 3px lightgray;
+	}
+	.btn{
+		width:30px;
+	    height:40px;
+		position:absolute;
+		top:40%;
+		background:lightgray;
+		font-size:20px;
+	    color:#fff;
+	    text-align:center;
+		line-height: 40px;
+		opacity:0.5;
+	    cursor:pointer;
+	}
+	.btnl{
+		border-radius:0 30px 30px 0;
+	    left:0;
+	}
+	.btnr{
+		border-radius:30px 0 0 30px;
+	    right:0;
+	}
+	.btn:hover{
+	    opacity:1;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="img">
+			<li><a href=""><img src="images/1.jpg"></a></li>
+			<li><a href=""><img src="images/2.jpg"></a></li>
+			<li><a href=""><img src="images/3.jpg"></a></li>
+			<li><a href=""><img src="images/4.jpg"></a></li>
+			<li><a href=""><img src="images/5.jpg"></a></li>
+			<li><a href=""><img src="images/6.jpg"></a></li>
+			<li><a href=""><img src="images/7.jpg"></a></li>
+			<li><a href=""><img src="images/8.jpg"></a></li>
+		</ul>
+		<ul class="cir"></ul>
+		<div class="btn btnl">&lt;</div>
+		<div class="btn btnr">&gt;</div>
+	</div>
+</body>
+<script>
+	$(function() {
+		var size = $('.img li').size();
+		for (var i = 1; i < size + 1; i++) {
+			var li = '<li>' + '</li>';
+			$('.cir').append(li);
+		}
+		$('.img li').first().show();
+		$('.cir li').first().addClass('active');
+		// 自动轮播
+		var i = 0;
+		var t = setInterval(move, 1500);
+		// 小圆点
+		$('.cir li').mouseover(function() {
+			$(this).addClass('active').siblings().removeClass('active');
+			var index = $(this).index();
+			i = index;
+			$('.img li').eq(index).stop().fadeIn(300).siblings().stop().fadeOut(300);
+		})
+		// 左按钮
+		function moveL() {
+			i--;
+			if (i == -1) i = size - 1;
+			$('.cir li').eq(i).addClass('active').siblings().removeClass('active');
+			$('.img li').eq(i).fadeIn(300).siblings().fadeOut(300);
+		};
+		// 右按钮
+		function move() {
+			i++;
+			if (i == size) i = 0;
+			$('.cir li').eq(i).addClass('active').siblings().removeClass('active');
+			$('.img li').eq(i).fadeIn(300).siblings().fadeOut(300);
+		};
+		$('.wrap').hover(function() {
+			clearInterval(t);
+		}, function() {
+			t = setInterval(move, 1000);
+		})
+		$('.btnl').click(function() {
+			moveL();
+		})
+		$('.btnr').click(function() {
+			move();
+		})
+	})
+</script>
+</html>
