@@ -103,16 +103,6 @@
 		}
 		$('.img li').first().show();
 		$('.cir li').first().addClass('active');
-		// 自动轮播
-		var i = 0;
-		var t = setInterval(move, 1500);
-		// 小圆点
-		$('.cir li').mouseover(function() {
-			$(this).addClass('active').siblings().removeClass('active');
-			var index = $(this).index();
-			i = index;
-			$('.img li').eq(index).stop().fadeIn(300).siblings().stop().fadeOut(300);
-		})
 		// 左按钮
 		function moveL() {
 			i--;
@@ -127,10 +117,21 @@
 			$('.cir li').eq(i).addClass('active').siblings().removeClass('active');
 			$('.img li').eq(i).fadeIn(300).siblings().fadeOut(300);
 		};
+		// 小圆点
+		$('.cir li').mouseover(function() {
+			$(this).addClass('active').siblings().removeClass('active');
+			var index = $(this).index();
+			i = index;
+			$('.img li').eq(index).stop().fadeIn(300).siblings().stop().fadeOut(300);
+		})
+		// 自动轮播
+		var i = 0;
+		var t = setInterval(move, 1500);
+		
 		$('.wrap').hover(function() {
 			clearInterval(t);
 		}, function() {
-			t = setInterval(move, 1000);
+			t = setInterval(move, 1500);
 		})
 		$('.btnl').click(function() {
 			moveL();
